@@ -24,9 +24,10 @@ app.ws('/chat', (ws, req) => {
 
     const chat = JSON.stringify({
         from: name,
-        message: 'in the houzzz!',
+        message: 'is in the houzzz!',
         timeStamp: (new Date()).toString()
     })
+    
     for (let p in ROOM) {
         ROOM[p].send(chat)
     }
@@ -50,7 +51,6 @@ app.ws('/chat', (ws, req) => {
 
     ws.on('close', ()=>{
         console.info(`Closing connection for ${name}`)
-        console.info('test2')
 
         ROOM[name].close()
         // remove name from the room
@@ -58,3 +58,5 @@ app.ws('/chat', (ws, req) => {
     })
 
 })
+
+app.use(express.static ( __dirname + '/frontend'))
