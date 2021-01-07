@@ -43,7 +43,6 @@ app.ws('/chat', (ws, req) => {
         })
 
         // loop through all active websocket subscriptions and push them the message
-        console.info('test1')
         for (let p in ROOM) {
             ROOM[p].send(chat)
         }
